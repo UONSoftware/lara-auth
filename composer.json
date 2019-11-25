@@ -1,0 +1,40 @@
+{
+    "name": "uonsoftware/laravel-auth",
+    "description": "API JWT authentication system for laravel",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Dusan Malusev",
+            "email": "dusan.998@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.3",
+        "tymon/jwt-auth": "1.0.0-rc.5",
+        "hashids/hashids": "^4.0",
+        "uonsoftware/refresh-tokens": "^0.0.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "UonSoftware\\LaraAuth\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "UonSoftware\\LaraAuth\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "UonSoftware\\LaraAuth\\LaravelAuthServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0"
+    }
+}
