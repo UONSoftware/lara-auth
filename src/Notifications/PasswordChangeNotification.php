@@ -3,9 +3,9 @@
 namespace UonSoftware\LaraAuth\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class PasswordChangeNotification extends Notification implements ShouldQueue
 {
@@ -19,7 +19,7 @@ class PasswordChangeNotification extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      *
-     * @param  string  $url
+     * @param string $url
      */
     public function __construct(string $url)
     {
@@ -29,10 +29,11 @@ class PasswordChangeNotification extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
@@ -40,24 +41,26 @@ class PasswordChangeNotification extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Change your password', $this->url)
-                    ->line('Thank you for using our application!');
+            ->line('The introduction to the notification.')
+            ->action('Change your password', $this->url)
+            ->line('Thank you for using our application!');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             //

@@ -2,8 +2,8 @@
 
 namespace UonSoftware\LaraAuth\Listeners;
 
-use UonSoftware\LaraAuth\Events\PasswordChangedEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use UonSoftware\LaraAuth\Events\PasswordChangedEvent;
 use UonSoftware\LaraAuth\Notifications\PasswordChangedNotification;
 
 class PasswordChangedListener implements ShouldQueue
@@ -25,11 +25,11 @@ class PasswordChangedListener implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  \UonSoftware\LaraAuth\Events\PasswordChangedEvent  $event
+     * @param \UonSoftware\LaraAuth\Events\PasswordChangedEvent $event
      *
      * @return void
      */
-    public function handle(PasswordChangedEvent $event)
+    public function handle(PasswordChangedEvent $event): void
     {
         $notification = (new PasswordChangedNotification())
             ->onQueue('password_reset')

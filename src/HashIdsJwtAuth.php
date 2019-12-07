@@ -6,38 +6,38 @@ namespace UonSoftware\LaraAuth;
 
 use Hashids\HashidsInterface;
 use Illuminate\Contracts\Auth\Guard as GuardContract;
-use Tymon\JWTAuth\Providers\Auth\Illuminate;
+use Tymon\JWTAuth\Providers\Auth\Illuminate as JwtAuth;
 
 /**
  * Class HashidsJwtAuth
  *
  * @package UonSoftware\LaraAuth
  */
-class HashidsJwtAuth extends Illuminate
+class HashidsJwtAuth extends JwtAuth
 {
     /**
      * @var \Hashids\HashidsInterface
      */
     protected $hashids;
-    
+
     /**
      * HashidsJwtAuth constructor.
      *
-     * @param  \Hashids\HashidsInterface  $hashids
-     * @param  \Illuminate\Contracts\Auth\Guard  $auth
+     * @param \Hashids\HashidsInterface        $hashids
+     * @param \Illuminate\Contracts\Auth\Guard $auth
      */
     public function __construct(HashidsInterface $hashids, GuardContract $auth)
     {
         parent::__construct($auth);
         $this->hashids = $hashids;
     }
-    
+
     /**
-     * @param  mixed  $id
+     * @param mixed $id
      *
      * @return bool
      */
-    public function byId($id)
+    public function byId($id): bool
     {
         $ids = $this->hashids->decodeHex($id);
         return parent::byId($ids);

@@ -6,7 +6,11 @@
     "authors": [
         {
             "name": "Dusan Malusev",
-            "email": "dusan.998@outlook.com"
+            "email": "malusev@uon.rs"
+        },
+        {
+            "name": "Dusan Mitrovic",
+            "email": "dusan@uon.rs"
         }
     ],
     "minimum-stability": "dev",
@@ -24,7 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "UonSoftware\\LaraAuth\\Tests\\": "tests"
+            "UonSoftware\\LaraAuth\\Tests\\": "tests/"
         }
     },
     "extra": {

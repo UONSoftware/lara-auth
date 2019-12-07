@@ -11,7 +11,7 @@ class NewPasswordRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,10 +21,14 @@ class NewPasswordRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'email' => 'required|email'
+            'email' => [
+                'required',
+                'email',
+                'exists:' . config('lara_auth.users_table', 'users'),
+            ],
         ];
     }
 }

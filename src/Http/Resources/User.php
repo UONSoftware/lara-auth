@@ -9,19 +9,20 @@ class User extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         $fields = config('lara_auth.serialization_fields');
-        
+
         $data = [];
-        
-        foreach($fields as $key => $value) {
+
+        foreach ($fields as $key => $value) {
             $data[$key] = $this->resource->{$value};
         }
-        
+
         return $data;
     }
 }

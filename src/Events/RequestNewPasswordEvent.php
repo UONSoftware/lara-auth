@@ -2,39 +2,32 @@
 
 namespace UonSoftware\LaraAuth\Events;
 
-use App\User;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
 
 class RequestNewPasswordEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * @var null|User
-     */
-    private $user = null;
+    private $user;
     private $email;
 
     /**
      * Create a new event instance.
      *
-     * @param  string  $email
+     * @param string $email
      */
     public function __construct(string $email)
     {
         $this->email = $email;
     }
 
-    /**
-     * @return \App\User
-     */
-    public function getUser(): User
+    public function getUser()
     {
         if ($this->user === null) {
-            $this->user = User::query()
+            $userModel = config('lara_auth.user_model');
+            $this->user = $userModel::query()
                 ->where('email', '=', $this->email)
                 ->firstOrFail();
         }
@@ -43,13 +36,4 @@ class RequestNewPasswordEvent
     }
 
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
-    }
 }

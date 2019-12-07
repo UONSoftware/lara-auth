@@ -2,17 +2,17 @@
 
 namespace UonSoftware\LaraAuth\Events;
 
-use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\InteractsWithSockets;
 
 class LoginEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    
-    private $user = null;
-    
+
+    private $user;
+
     /**
      * Create a new event instance.
      *
@@ -22,7 +22,7 @@ class LoginEvent
     {
         $this->user = $user;
     }
-    
+
     /**
      * @return mixed
      */
@@ -30,8 +30,8 @@ class LoginEvent
     {
         return $this->user;
     }
-    
-    
+
+
     /**
      * Get the channels the event should broadcast on.
      *

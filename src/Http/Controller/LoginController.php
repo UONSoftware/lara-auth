@@ -3,8 +3,8 @@
 namespace UonSoftware\LaraAuth\Http\Controllers;
 
 use Throwable;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
-use Illuminate\Validation\Validator;
 use UonSoftware\LaraAuth\Contracts\LoginContract;
 use UonSoftware\LaraAuth\Http\Requests\LoginRequest;
 use UonSoftware\LaraAuth\Exceptions\PasswordUpdateException;
@@ -13,17 +13,28 @@ use UonSoftware\LaraAuth\Exceptions\InvalidCredentialsException;
 
 class LoginController extends Controller
 {
+    /**
+     * @var \UonSoftware\LaraAuth\Contracts\LoginContract
+     */
     private $loginService;
-    
-    private $validator;
-    
-    public function __construct(LoginContract $loginService, Validator $validator)
+
+
+    /**
+     * LoginController constructor.
+     *
+     * @param \UonSoftware\LaraAuth\Contracts\LoginContract $loginService
+     */
+    public function __construct(LoginContract $loginService)
     {
         $this->loginService = $loginService;
-        $this->validator = $validator;
     }
-    
-    public function login(LoginRequest $request)
+
+    /**
+     * @param \UonSoftware\LaraAuth\Http\Requests\LoginRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function login(LoginRequest $request): ?JsonResponse
     {
         try {
             return response()->json($this->loginService->login($request->validated()));
