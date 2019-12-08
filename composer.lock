@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9836b0f125d4a8e1e4cd3db134692072",
+    "content-hash": "d11f9942e604dee0bb41ea2f85575302",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -563,16 +563,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.57",
+            "version": "1.0.59",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a"
+                "reference": "1426da21dae81e1f3fe1074a166eb6dd3045f810"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
-                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1426da21dae81e1f3fe1074a166eb6dd3045f810",
+                "reference": "1426da21dae81e1f3fe1074a166eb6dd3045f810",
                 "shasum": ""
             },
             "require": {
@@ -643,7 +643,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-10-16T21:01:05+00:00"
+            "time": "2019-12-08T12:25:29+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -791,22 +791,22 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.26.0",
+            "version": "2.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "e01ecc0b71168febb52ae1fdc1cfcc95428e604e"
+                "reference": "13b8485a8690f103bf19cba64879c218b102b726"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e01ecc0b71168febb52ae1fdc1cfcc95428e604e",
-                "reference": "e01ecc0b71168febb52ae1fdc1cfcc95428e604e",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/13b8485a8690f103bf19cba64879c218b102b726",
+                "reference": "13b8485a8690f103bf19cba64879c218b102b726",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.1.8 || ^8.0",
-                "symfony/translation": "^3.4 || ^4.0"
+                "symfony/translation": "^3.4 || ^4.0 || ^5.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
@@ -821,6 +821,9 @@
             ],
             "type": "library",
             "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                },
                 "laravel": {
                     "providers": [
                         "Carbon\\Laravel\\ServiceProvider"
@@ -854,7 +857,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-10-21T21:32:25+00:00"
+            "time": "2019-11-20T06:59:06+00:00"
         },
         {
             "name": "opis/closure",
@@ -2911,21 +2914,22 @@
         },
         {
             "name": "uonsoftware/refresh-tokens",
-            "version": "v0.0.4",
+            "version": "v0.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UONSoftware/laravel-refresh-tokens.git",
-                "reference": "b74f7ffd1b2b05e16f3a08a94de7a132e14db6a2"
+                "reference": "b4b390517e5f230f326a76642229342ccdb43dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UONSoftware/laravel-refresh-tokens/zipball/b74f7ffd1b2b05e16f3a08a94de7a132e14db6a2",
-                "reference": "b74f7ffd1b2b05e16f3a08a94de7a132e14db6a2",
+                "url": "https://api.github.com/repos/UONSoftware/laravel-refresh-tokens/zipball/b4b390517e5f230f326a76642229342ccdb43dc2",
+                "reference": "b4b390517e5f230f326a76642229342ccdb43dc2",
                 "shasum": ""
             },
             "require": {
-                "nesbot/carbon": "2.26.0",
+                "nesbot/carbon": "^2.26.0",
                 "php": ">=7.3",
+                "tymon/jwt-auth": "^1.0.0-rc.5",
                 "uonsoftware/rsa-signer": "^1.0.5"
             },
             "require-dev": {
@@ -2955,7 +2959,7 @@
                 }
             ],
             "description": "Laravel refresh token library",
-            "time": "2019-11-21T11:49:48+00:00"
+            "time": "2019-12-08T14:18:50+00:00"
         },
         {
             "name": "uonsoftware/rsa-signer",

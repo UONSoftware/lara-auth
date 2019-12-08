@@ -19,7 +19,7 @@
         "php": ">=7.3",
         "tymon/jwt-auth": "^1.0.0-rc.5",
         "hashids/hashids": "^4.0",
-        "uonsoftware/refresh-tokens": "^0.0.4"
+        "uonsoftware/refresh-tokens": "^0.0.6"
     },
     "autoload": {
         "psr-4": {
