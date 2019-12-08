@@ -6,6 +6,7 @@ use Closure;
 use Tymon\JWTAuth\JWTAuth;
 use Illuminate\Contracts\Hashing\Hasher;
 use UonSoftware\LaraAuth\Events\LoginEvent;
+use UonSoftware\LaraAuth\Http\Resources\User;
 use UonSoftware\LaraAuth\Contracts\LoginContract;
 use Illuminate\Contracts\Config\Repository as Config;
 use UonSoftware\LaraAuth\Exceptions\PasswordUpdateException;
@@ -91,19 +92,21 @@ class LoginService implements LoginContract
      */
     public function login(array $login, ?Closure $additionalChecks = null): array
     {
-        $config = $this->config->get('lara_auth');
-
+        $findUser = $this->config
+            ->get('lara_auth.user.search');
         $where = [];
 
-        $passwordOnModel = $this->config->get('lara_auth.user.email.field_on_model');
-        $passwordOnRequest = $this->config->get('lara_auth.user.email.field_from_request');
+        $passwordOnModel = $this->config
+            ->get('lara_auth.user.email.field_on_model');
+        $passwordOnRequest = $this->config
+            ->get('lara_auth.user.email.field_from_request');
 
 
-        foreach ($config['user.search'] as $search) {
+        foreach ($findUser as $search) {
             ['field' => $field, 'operator' => $operator] = $search;
             $where[] = [$field, $operator, $login[$field]];
         }
-        $userModel = $config['user_model'];
+        $userModel = $config['user_model'] ?? '\App\User';
         $user = $userModel::query()
             ->where($where)
             ->firstOrFail();
@@ -120,8 +123,10 @@ class LoginService implements LoginContract
             throw new PasswordUpdateException();
         }
 
-        $emailVerificationField = $config['user.email_verification.field'];
-        if ($config['user.email_verification.check'] === true && $user->{$emailVerificationField} === null) {
+        $emailVerificationField = $this->config->get('lara_auth.user.email_verification.field');
+        $shouldCheckEmailVerification = $this->config->get('lara_auth.user.email_verification.check');
+
+        if ($shouldCheckEmailVerification === true && $user->{$emailVerificationField} === null) {
             throw new EmailIsNotVerifiedException();
         }
 
@@ -129,8 +134,11 @@ class LoginService implements LoginContract
             $additionalChecks($user);
         }
 
-        [1 => $refreshToken] = $this->refreshTokenGenerator->generateNewRefreshToken(null, $user->getAuthIdentifier());
-        $userResource = $config['user_resource'];
+        [1 => $refreshToken] = $this->refreshTokenGenerator->generateNewRefreshToken(
+            null,
+            $user->getAuthIdentifier()
+        );
+        $userResource = $this->config->get('lara_auth.user_resource') ?? User::class;
         $this->eventDispatcher->dispatch(new LoginEvent($user));
         return [
             'user' => new $userResource($user),
