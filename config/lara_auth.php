@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'register'             => true,
+    'register'             => false,
     'users_table'          => 'users',
     'user_model'           => App\User::class,
     'login_validation'     => [
