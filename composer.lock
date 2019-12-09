@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d11f9942e604dee0bb41ea2f85575302",
+    "content-hash": "ad4a353d1dbaa8df1a6524d704b4ec86",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -563,16 +563,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.59",
+            "version": "1.0.61",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "1426da21dae81e1f3fe1074a166eb6dd3045f810"
+                "reference": "4fb13c01784a6c9f165a351e996871488ca2d8c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1426da21dae81e1f3fe1074a166eb6dd3045f810",
-                "reference": "1426da21dae81e1f3fe1074a166eb6dd3045f810",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4fb13c01784a6c9f165a351e996871488ca2d8c9",
+                "reference": "4fb13c01784a6c9f165a351e996871488ca2d8c9",
                 "shasum": ""
             },
             "require": {
@@ -643,7 +643,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-12-08T12:25:29+00:00"
+            "time": "2019-12-08T21:46:50+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2914,16 +2914,16 @@
         },
         {
             "name": "uonsoftware/refresh-tokens",
-            "version": "v0.0.6",
+            "version": "v0.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UONSoftware/laravel-refresh-tokens.git",
-                "reference": "b4b390517e5f230f326a76642229342ccdb43dc2"
+                "reference": "4d8e96bcf140f03d3954fcfdb8d1b3494646f0e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UONSoftware/laravel-refresh-tokens/zipball/b4b390517e5f230f326a76642229342ccdb43dc2",
-                "reference": "b4b390517e5f230f326a76642229342ccdb43dc2",
+                "url": "https://api.github.com/repos/UONSoftware/laravel-refresh-tokens/zipball/4d8e96bcf140f03d3954fcfdb8d1b3494646f0e1",
+                "reference": "4d8e96bcf140f03d3954fcfdb8d1b3494646f0e1",
                 "shasum": ""
             },
             "require": {
@@ -2959,20 +2959,20 @@
                 }
             ],
             "description": "Laravel refresh token library",
-            "time": "2019-12-08T14:18:50+00:00"
+            "time": "2019-12-09T19:03:10+00:00"
         },
         {
             "name": "uonsoftware/rsa-signer",
-            "version": "v1.0.7",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UONSoftware/rsa-signer.git",
-                "reference": "1d267670c5aebe0a7c55fc1ccb374c7654341d78"
+                "reference": "62316415056a579a98985202f89846ca024dc324"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UONSoftware/rsa-signer/zipball/1d267670c5aebe0a7c55fc1ccb374c7654341d78",
-                "reference": "1d267670c5aebe0a7c55fc1ccb374c7654341d78",
+                "url": "https://api.github.com/repos/UONSoftware/rsa-signer/zipball/62316415056a579a98985202f89846ca024dc324",
+                "reference": "62316415056a579a98985202f89846ca024dc324",
                 "shasum": ""
             },
             "require": {
@@ -3007,7 +3007,7 @@
                 }
             ],
             "description": "Laravel RSA Signer",
-            "time": "2019-11-20T14:41:13+00:00"
+            "time": "2019-12-08T16:48:02+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

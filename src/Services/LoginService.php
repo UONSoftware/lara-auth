@@ -13,6 +13,7 @@ use UonSoftware\LaraAuth\Exceptions\PasswordUpdateException;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use UonSoftware\RefreshTokens\Contracts\RefreshTokenGenerator;
 use UonSoftware\LaraAuth\Contracts\UpdateUserPasswordContract;
+use UonSoftware\RefreshTokens\Contracts\RefreshTokenRepository;
 use UonSoftware\LaraAuth\Exceptions\InvalidCredentialsException;
 use UonSoftware\LaraAuth\Exceptions\EmailIsNotVerifiedException;
 
@@ -27,29 +28,33 @@ class LoginService implements LoginContract
     /**
      * @var \Illuminate\Contracts\Hashing\Hasher
      */
-    private $hasher;
+    protected $hasher;
 
     /**
      * @var \UonSoftware\LaraAuth\Contracts\UpdateUserPasswordContract
      */
-    private $passwordService;
+    protected $passwordService;
 
     /**
      * @var \Tymon\JWTAuth\JWTAuth
      */
-    private $jwtAuth;
+    protected $jwtAuth;
 
     /**
      * @var \UonSoftware\RefreshTokens\Contracts\RefreshTokenGenerator
      */
-    private $refreshTokenGenerator;
+    protected $refreshTokenGenerator;
 
     /**
      * @var \Illuminate\Contracts\Config\Repository
      */
-    private $config;
+    protected $config;
 
-    private $eventDispatcher;
+    /**
+     * @var \Illuminate\Contracts\Events\Dispatcher
+     */
+    protected $eventDispatcher;
+
 
     /**
      * LoginService constructor.
@@ -94,14 +99,14 @@ class LoginService implements LoginContract
     {
         $findUser = $this->config
             ->get('lara_auth.user.search');
-        $where = [];
+
 
         $passwordOnModel = $this->config
             ->get('lara_auth.user.email.field_on_model');
         $passwordOnRequest = $this->config
             ->get('lara_auth.user.email.field_from_request');
 
-
+        $where = [];
         foreach ($findUser as $search) {
             ['field' => $field, 'operator' => $operator] = $search;
             $where[] = [$field, $operator, $login[$field]];
@@ -111,14 +116,14 @@ class LoginService implements LoginContract
             ->where($where)
             ->firstOrFail();
 
-        if (!$this->hasher->check($login->{$passwordOnRequest}, $user->{$passwordOnModel})) {
+        if (!$this->hasher->check($login[$passwordOnRequest], $user->{$passwordOnModel})) {
             throw new InvalidCredentialsException();
         }
 
         // Check if hash is still good
         if ($this->hasher->needsRehash($user->{$passwordOnModel}) && !$this->passwordService->updatePassword(
                 $user,
-                $login->{$passwordOnRequest}
+                $login[$passwordOnRequest]
             )) {
             throw new PasswordUpdateException();
         }
@@ -149,4 +154,5 @@ class LoginService implements LoginContract
             ],
         ];
     }
+
 }
