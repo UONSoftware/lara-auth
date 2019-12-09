@@ -20,7 +20,16 @@ class User extends JsonResource
         $data = [];
 
         foreach ($fields as $key => $value) {
-            $data[$key] = $this->resource->{$value};
+            if (
+                is_array($value) &&
+                isset($value['type']) &&
+                $value['type'] === 'function' &&
+                function_exists($value[$value['type']])
+            ) {
+                $date[$key] = $value($this->resource);
+            } else {
+                $data[$key] = $this->resource->{$value};
+            }
         }
 
         return $data;

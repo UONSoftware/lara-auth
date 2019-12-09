@@ -33,7 +33,6 @@ return [
         'name'     => 'name',
         'surname'  => 'surname',
         'email'    => 'email',
-        'password' => 'password',
     ],
     'user_resource'        => UonSoftware\LaraAuth\Http\Resources\User::class,
     'password_reset'       => [
