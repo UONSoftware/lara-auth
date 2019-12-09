@@ -30,9 +30,9 @@ return [
         ],
     ],
     'serialization_fields' => [
-        'name'     => 'name',
-        'surname'  => 'surname',
-        'email'    => 'email',
+        'name'    => 'name',
+        'surname' => 'surname',
+        'email'   => 'email',
     ],
     'user_resource'        => UonSoftware\LaraAuth\Http\Resources\User::class,
     'password_reset'       => [
