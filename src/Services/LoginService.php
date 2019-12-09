@@ -102,9 +102,9 @@ class LoginService implements LoginContract
 
 
         $passwordOnModel = $this->config
-            ->get('lara_auth.user.email.field_on_model');
+            ->get('lara_auth.user.password.field_on_model');
         $passwordOnRequest = $this->config
-            ->get('lara_auth.user.email.field_from_request');
+            ->get('lara_auth.user.password.field_from_request');
 
         $where = [];
         foreach ($findUser as $search) {
