@@ -4,8 +4,6 @@
 namespace UonSoftware\LaraAuth\Dto;
 
 
-use UonSolutions\LaraAuth\Dto\Base;
-
 /**
  * Class PasswordReset
  *

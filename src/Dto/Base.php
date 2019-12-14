@@ -1,7 +1,7 @@
 <?php
 
 
-namespace UonSolutions\LaraAuth\Dto;
+namespace UonSoftware\LaraAuth\Dto;
 
 
 use TypeError;

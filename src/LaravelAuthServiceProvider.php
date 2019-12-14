@@ -2,9 +2,7 @@
 
 namespace UonSoftware\LaraAuth;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
 use UonSoftware\LaraAuth\Services\LoginService;

@@ -35,9 +35,8 @@ class HashidsJwtAuth extends JwtAuth
     /**
      * @param mixed $id
      *
-     * @return bool
      */
-    public function byId($id): bool
+    public function byId($id)
     {
         $ids = $this->hashids->decodeHex($id);
         return parent::byId($ids);

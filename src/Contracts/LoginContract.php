@@ -6,8 +6,6 @@ use Closure;
 
 interface LoginContract
 {
-    
-    
     /**
      * @param  array  $login
      * @param  \Closure|null  $additionalChecks
