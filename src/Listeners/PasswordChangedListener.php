@@ -18,7 +18,7 @@ class PasswordChangedListener implements ShouldQueue
      */
     public function handle(PasswordChangedEvent $event): void
     {
-        $passwordChangeNotification = config('lara_auth.password_reset.request_notification');
+        $passwordChangeNotification = config('lara_auth.password_reset.password_changed_notification');
 
         $notification = (new $passwordChangeNotification())
             ->delay(now()->addSeconds(20));
