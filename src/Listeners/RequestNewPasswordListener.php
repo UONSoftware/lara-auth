@@ -13,8 +13,6 @@ use UonSoftware\LaraAuth\Notifications\PasswordChangeNotification;
 class RequestNewPasswordListener implements ShouldQueue
 {
 
-    public $queue = 'listeners';
-
     /**
      * @var \Tymon\JWTAuth\Manager
      */
@@ -72,9 +70,9 @@ class RequestNewPasswordListener implements ShouldQueue
         [
             'base'            => $base,
             'change_password' => $route,
-        ] = $this->config->get('hob_auth.password_reset.frontend_url');
+        ] = $this->config->get('lara_auth.password_reset.frontend_url');
 
-        $ttl = $this->config->get('hob_auth.password_reset.ttl');
+        $ttl = $this->config->get('lara_auth.password_reset.ttl');
         $user = $event->getUser();
         $payload = $this->payloadFactory
             ->setTTL($ttl)
@@ -87,10 +85,9 @@ class RequestNewPasswordListener implements ShouldQueue
             ->make();
 
         $jwt = $this->jwtManager->encode($payload)->get();
-
+        $passwordChangeNotification = $this->config->get('lara_auth.password_reset.request_notification');
         $url = $base . $route . '?access_token=' . $jwt;
-        $notification = (new PasswordChangeNotification($url))
-            ->onQueue('password_reset')
+        $notification = (new $passwordChangeNotification($url))
             ->delay(now()->addSeconds(10));
 
         $user->notify($notification);

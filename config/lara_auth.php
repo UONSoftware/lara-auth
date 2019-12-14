@@ -1,5 +1,8 @@
 <?php
 
+use UonSoftware\LaraAuth\Notifications\PasswordChangeNotification;
+use UonSoftware\LaraAuth\Notifications\PasswordChangedNotification;
+
 return [
     'register'             => false,
     'users_table'          => 'users',
@@ -41,5 +44,7 @@ return [
             'change_password' => env('FRONTEND_CHANGE_PASSWORD_ROUTE', '/change-password'),
         ],
         'ttl'          => env('PASSWORD_RESET_TTL', 15),
+        'request_notification' => PasswordChangeNotification::class,
+        'password_changed_notification' => PasswordChangedNotification::class
     ],
 ];
