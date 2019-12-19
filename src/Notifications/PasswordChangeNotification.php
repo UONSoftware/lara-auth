@@ -63,7 +63,7 @@ class PasswordChangeNotification extends Notification implements ShouldQueue
     public function toArray($notifiable): array
     {
         return [
-            //
+            'url' => $this->url
         ];
     }
 }
