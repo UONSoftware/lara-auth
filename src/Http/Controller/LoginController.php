@@ -51,9 +51,9 @@ class LoginController extends Controller
         try {
             return response()->json($this->loginService->login($request->validated()));
         } catch (InvalidCredentialsException | PasswordUpdateException | EmailIsNotVerifiedException $e) {
-            return response()->json(['message' => $e->getMessage()]);
+            return response()->json(['message' => $e->getMessage()], 401);
         } catch (Throwable $e) {
-            return response()->json(['message' => 'An error has occurred']);
+            return response()->json(['message' => 'An error has occurred'], 500);
         }
     }
 

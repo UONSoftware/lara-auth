@@ -33,8 +33,9 @@ class HashidsJwtAuth extends JwtAuth
     }
 
     /**
-     * @param mixed $id
+     * @param string|int $id
      *
+     * @return mixed
      */
     public function byId($id)
     {

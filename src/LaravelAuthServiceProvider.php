@@ -41,12 +41,14 @@ class LaravelAuthServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $dispatcher): void
     {
-        $this->publishes(
-            [
-                __DIR__ . '/../config/lara_auth.php' => config_path('lara_auth.php'),
-            ],
-            'config'
-        );
+        if($this->app->runningInConsole())  {
+            $this->publishes(
+                [
+                    __DIR__ . '/../config/lara_auth.php' => config_path('lara_auth.php'),
+                ],
+                'config'
+            );
+        }
 
         Route::prefix('/api/auth')
             ->middleware('api')

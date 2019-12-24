@@ -2,11 +2,12 @@
 
 use UonSoftware\LaraAuth\Notifications\PasswordChangeNotification;
 use UonSoftware\LaraAuth\Notifications\PasswordChangedNotification;
+use UonSoftware\LaraAuth\Http\Resources\User as UserResource;
 
 return [
     'register'             => false,
     'users_table'          => 'users',
-    'user_model'           => App\User::class,
+    'user_model'           => 'App\User',
     'login_validation'     => [
         'email'    => 'required|email|exists:users,email',
         'password' => 'required|min:8',
@@ -37,14 +38,19 @@ return [
         'surname' => 'surname',
         'email'   => 'email',
     ],
-    'user_resource'        => UonSoftware\LaraAuth\Http\Resources\User::class,
+    'user_resource'        => UserResource::class,
     'password_reset'       => [
-        'frontend_url' => [
+        'frontend_url'                  => [
             'base'            => env('FRONTEND_URL', 'http://localhost:3000'),
             'change_password' => env('FRONTEND_CHANGE_PASSWORD_ROUTE', '/change-password'),
         ],
-        'ttl'          => env('PASSWORD_RESET_TTL', 15),
-        'request_notification' => PasswordChangeNotification::class,
-        'password_changed_notification' => PasswordChangedNotification::class
+        'change_password_validation'    => [
+            'required',
+            'min:8',
+            'confirmed',
+        ],
+        'ttl'                           => env('PASSWORD_RESET_TTL', 15),
+        'request_notification'          => PasswordChangeNotification::class,
+        'password_changed_notification' => PasswordChangedNotification::class,
     ],
 ];

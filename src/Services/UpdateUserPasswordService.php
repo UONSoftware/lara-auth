@@ -80,7 +80,10 @@ class UpdateUserPasswordService implements UpdateUserPasswordContract
 
         DB::beginTransaction();
 
-        $count = $userModel::query()->where($field, '=', $user)->update(['password' => $hash]);
+        $count = $userModel::query()
+            ->where($field, '=', $user)
+            ->update(['password' => $hash]);
+
         if ($count === 0) {
             DB::rollBack();
             return false;

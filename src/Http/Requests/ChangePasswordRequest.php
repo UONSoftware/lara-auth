@@ -25,11 +25,7 @@ class ChangePasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => [
-                'required',
-                'min:8',
-                'confirmed',
-            ],
+            'password' => config('lara_auth.password_reset.change_password_validation'),
         ];
     }
 }
